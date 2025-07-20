@@ -1,0 +1,89 @@
+<!-- 
+<div class="card" style="width: 18rem;">
+  <img [src]="productProp.productImgUrl" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">\{{productProp.productName}}</h5>
+   
+    <p class="card-text">price: {{productProp.productPrice}}.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
+
+<!-- @if  -->
+<div class="container mt-5">
+  <!-- <input type="text" [value]="userName" class="form-control">
+    <h1>{{userName}}</h1> -->
+  <!-- ngModel ===>  tow way binding  [()] -->
+  <!-- <input type="text" [(ngModel)]="userName" class="form-control">
+    <h1>{{userName}}</h1> -->
+
+  <label class="lable-control">search:</label>
+  <input type="text" [(ngModel)]="filterByName" class="form-control" />
+
+  <h1>totalOrderPrice: {{ totalOrderPriceProp }}</h1>
+  <div class="row">
+    @for(i of productsAfterSearch ;track i.id){
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <img [src]="i.productImgUrl" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <!-- <h5 class="card-title">{{ i.productName }}</h5> -->
+          <!-- attribute directives ngClass -->
+          <!-- <h5 class="card-title" [ngClass]="{'text-danger':i.productQuantity==0,
+          'text-primary':i.productQuantity==1
+          }">{{ i.productName }}</h5> -->
+
+          <h5
+            class="card-title"
+            [ngStyle]="{
+              'background-color': i.productQuantity == 0 ? 'red' : 'blue'
+            }"
+          >
+            {{ i.productName }}
+          </h5>
+          <p class="card-text">price: {{ i.productPrice }}.</p>
+          <p class="card-text">qty: {{ i.productQuantity }}.</p>
+          <!-- @if(i.productQuantity>0){
+    
+    <a href="#" class="btn btn-primary" >Add to cart</a>
+}@else {
+    <p>no quantity</p>
+}
+        -->
+          <div class="d-flex justify-content-between">
+            <!-- property binding -->
+            <!-- <button class="btn btn-primary" [hidden]="i.productQuantity==0">Add to cart</button> -->
+
+            <button class="btn btn-primary" [disabled]="i.productQuantity == 0">
+              Add to cart
+            </button>
+            @switch(i.productQuantity){ @case (0) {
+            <p class="text-danger">out of stock</p>
+            } @case (1) {
+            <p class="text-warning">one item in stock</p>
+
+            } @default {
+            <p class="text-success">in stock</p>
+
+            } }
+          </div>
+
+          <div class="d-flex mt-2">
+            <!-- event binding html ==> ts -->
+            <!-- template reference   #anyname-->
+            <input type="number" #qtyRef />
+            <button
+              class="btn btn-success"
+              (click)="totalOrderPrice(qtyRef.value, i.productPrice)"
+            >
+              buy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }@empty{
+    <h1 class="text-center text-danger">no products</h1>
+    }
+  </div>
+</div>
