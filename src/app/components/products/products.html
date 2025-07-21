@@ -11,20 +11,21 @@
 
 <!-- @if  -->
 <div class="container mt-5">
+  <h1>{{data | date :'short'}}</h1>
   <!-- <input type="text" [value]="userName" class="form-control">
     <h1>{{userName}}</h1> -->
   <!-- ngModel ===>  tow way binding  [()] -->
   <!-- <input type="text" [(ngModel)]="userName" class="form-control">
     <h1>{{userName}}</h1> -->
 
-  <label class="lable-control">search:</label>
-  <input type="text" [(ngModel)]="filterByName" class="form-control" />
+  <!-- <label class="lable-control">search:</label>
+  <input type="text" [(ngModel)]="filterByName" class="form-control" /> -->
   <h1>totalOrderPrice: {{ totalOrderPriceProp }}</h1>
   <div class="row">
     @for(i of productsAfterSearch ;track i.id){
     <div class="col-md-3">
       <div class="card" style="width: 18rem">
-        <img [src]="i.productImgUrl" class="card-img-top" alt="..." />
+        <img  appImgStyle color1="green" [src]="i.productImgUrl"  class="card-img-top" alt="..." />
         <div class="card-body">
           <!-- <h5 class="card-title">{{ i.productName }}</h5> -->
           <!-- attribute directives ngClass -->
@@ -32,15 +33,23 @@
           'text-primary':i.productQuantity==1
           }">{{ i.productName }}</h5> -->
 
-          <h5
+          <!-- <h5
             class="card-title"
             [ngStyle]="{
-              'background-color': i.productQuantity == 0 ? 'red' : 'blue'
+              'background-color': i.productQuantity == 0 ? 'red' : 'blue','color': i.productQuantity>1 'red':'black'
             }"
           >
             {{ i.productName }}
+          </h5> -->
+             <h5
+            class="card-title"
+       
+          >
+            {{ i.productName | lowercase }}
           </h5>
-          <p class="card-text">price: {{ i.productPrice }}.</p>
+          <p class="card-text text-decoration-line-through">price: {{ i.productPrice  | currency:'EUR':'code' }}.</p>
+
+          <p class="card-text">price: {{ i.productPrice  | discount:25 | currency:'EUR':'code' }}.</p>
           <p class="card-text">qty: {{ i.productQuantity }}.</p>
           <!-- @if(i.productQuantity>0){
     
@@ -53,7 +62,7 @@
             <!-- property binding -->
             <!-- <button class="btn btn-primary" [hidden]="i.productQuantity==0">Add to cart</button> -->
 
-            <button class="btn btn-primary" [disabled]="i.productQuantity == 0">
+            <button class="btn btn-primary" [disabled]="i.productQuantity == 0" (click)="addToCartInChild(i)">
               Add to cart
             </button>
             @switch(i.productQuantity){ @case (0) {

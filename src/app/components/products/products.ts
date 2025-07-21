@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Iproducts } from '../../Models/iproducts';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ImgStyle } from '../../Directives/img-style';
+import { DiscountPipe } from '../../pipes/discount-pipe';
 
 @Component({
   selector: 'app-products',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule ,ImgStyle,DiscountPipe],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
-export class Products {
+export class Products  {
   productProp!: Iproducts[]; //non null
   totalOrderPriceProp: number = 0;
   userName: string = 'ahmed';
-  constructor() {
+  data:Date=new Date()
+
+  constructor(  ) {
     this.productProp = [
       {
         id: 1,
@@ -117,13 +121,16 @@ export class Products {
     ];
     this.productsAfterSearch = this.productProp;
   }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
   totalOrderPrice(qty: string, price: number) {
     this.totalOrderPriceProp += +qty * price;
   }
 
   productsAfterSearch: Iproducts[] = [];
-  set filterByName(value: string) {
+ @Input() set filterByName(value: string) {
     //as method
     console.log(value);
     this.productsAfterSearch = this.dosearch(value);
@@ -138,4 +145,13 @@ export class Products {
   //  get  filterByName(){
 
   // }
+
+  //Day3
+ // create event 
+ @Output() propEvent:EventEmitter<Iproducts>=new EventEmitter<Iproducts>()
+  addToCartInChild(prd:Iproducts){
+this.propEvent.emit(prd) //fire event
+  }
 }
+
+
