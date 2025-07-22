@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '../../Models/store';
 import { CommonModule } from '@angular/common';
+import { ProoductStatic } from '../../services/prooduct-static';
+import { Iproducts } from '../../Models/iproducts';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.css',
 })
 export class Home {
+prd:Iproducts[]=[]
+
+constructor( private prdInHome:ProoductStatic ){
+this.prd=this.prdInHome.getAllData()
+}
+
+
   //ts
   // one object
   storeProp: Store = new Store(

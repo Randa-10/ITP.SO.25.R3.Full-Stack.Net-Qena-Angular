@@ -21,5 +21,8 @@ addToCartInParent(prdParent:Iproducts){
   }else{
     this.prdList.push({...prdParent,productQuantity:1})
   }
+
 }
+
+
 }
