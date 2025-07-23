@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { Iproducts } from '../Models/iproducts';
 import { environment } from '../../environments/environment.development';
 
@@ -24,5 +24,8 @@ return this.http.get<Iproducts>(`${environment.baseUrl}products/${prdID}`)
   search(value:string) :Observable <Iproducts[]>{
     return this.http.get<Iproducts[]>(`${environment.baseUrl}products?productName=${value}`)
 
+  }
+  addproduct(){
+    
   }
 }

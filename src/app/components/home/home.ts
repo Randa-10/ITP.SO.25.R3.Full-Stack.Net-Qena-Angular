@@ -3,6 +3,7 @@ import { Store } from '../../Models/store';
 import { CommonModule } from '@angular/common';
 import { ProoductStatic } from '../../services/prooduct-static';
 import { Iproducts } from '../../Models/iproducts';
+import { UserAuth } from '../../services/user-auth';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,19 @@ import { Iproducts } from '../../Models/iproducts';
 export class Home {
 prd:Iproducts[]=[]
 
-constructor( private prdInHome:ProoductStatic ){
+constructor( private prdInHome:ProoductStatic ,private auth:UserAuth ){
 this.prd=this.prdInHome.getAllData()
+
 }
 
+//Day5
+
+login(){
+this.auth.login("ali","11111")
+}
+logout(){
+this.auth.logout()
+}
 
   //ts
   // one object

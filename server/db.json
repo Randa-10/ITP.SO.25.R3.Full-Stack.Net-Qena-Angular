@@ -46,7 +46,7 @@
       "productDetails": "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem  lorem lorem lorem lorem lorem lorem  "
     },
     {
-      "id":"6",
+      "id": "6",
       "productName": "iphone",
       "productImgUrl": "https://f.nooncdn.com/p/v1640152217/N52217824A_1.jpg?format=avif&width=240",
       "productQuantity": 20,
@@ -91,5 +91,42 @@
       "productDetails": "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem  lorem lorem lorem lorem lorem lorem  "
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "5a5b5",
+      "fname": "ali",
+      "email": "ali@gmail",
+      "password": "1233"
+    },
+    {
+      "id": "021c",
+      "fname": "Rana",
+      "email": "rana@gmail",
+      "password": "2222"
+    },
+    {
+      "id": "ff58",
+      "email": "randa010011012@gmail.com",
+      "password": "5544444",
+      "fname": "ahmed"
+    },
+    {
+      "id": "24aa",
+      "email": "randa010011",
+      "password": "55s",
+      "fname": "MMMMMMMMMMMMMMMM"
+    },
+    {
+      "id": "67c7",
+      "fname": "Rhamam",
+      "email": "randa010011012@gmail.com",
+      "password": "55xxxxxxxxxxxxx"
+    },
+    {
+      "id": "4e3c",
+      "fname": "Rh",
+      "email": "randa010011012@gmail.com",
+      "password": "55xxxxxxxxxxxxx"
+    }
+  ]
 }
